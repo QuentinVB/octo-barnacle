@@ -60,13 +60,11 @@ public class PlayerCamera : MonoBehaviour
             {
                 // was close, but is now further away
                 wasCloseToPlayer = false;
-                Debug.Log("was close, is far");
                 return Vector3.Lerp(transform.position, newPos, followSpeed);
             }
             else
             {
                 // was close, is close
-                Debug.Log("was close, is close");
                 return newPos;
             }
 
@@ -76,14 +74,12 @@ public class PlayerCamera : MonoBehaviour
             if (distToPlayer > approachThreshold)
             {
                 // was far, is far
-                Debug.Log("was far, is far");
                 return Vector3.Lerp(transform.position, newPos, followSpeed);
             }
             else
             {
                 // was far, is close
                 wasCloseToPlayer = true;
-                Debug.Log("was far, is close");
                 return Vector3.Lerp(transform.position, newPos, followSpeed);
             }
         }
@@ -105,7 +101,7 @@ public class PlayerCamera : MonoBehaviour
             Gizmos.DrawWireCube(new Vector3(bounds.center.x, bounds.center.y, player.position.z), new Vector3(bounds.size.x, bounds.size.y, 0.01f));
 
             float height = calcPlaneHeight();
-            float width = height * 16 / 9;
+            float width = height * Screen.currentResolution.width / Screen.currentResolution.height;
 
             Gizmos.color = new Color(0, 1, 0.6f);
             Gizmos.DrawWireCube(new Vector3(bounds.center.x, bounds.center.y, player.position.z), new Vector3(bounds.size.x + width, bounds.size.y + height, 0.01f));
@@ -119,7 +115,7 @@ public class PlayerCamera : MonoBehaviour
         // considering a vertical FOV axis
         float planeHeight = calcPlaneHeight();
 
-        float planeWidth = planeHeight * 16 / 9;
+        float planeWidth = planeHeight * Screen.currentResolution.width / Screen.currentResolution.height;
 
         Vector3 center = new Vector3(transform.position.x, transform.position.y, player.position.z);
 
