@@ -40,6 +40,6 @@ public class Player : MonoBehaviour
             return;
         }     
         sneaked=false;
-        transform.Translate(horizontal,jump,0);
+        player.transform.Translate(horizontal,jump,0);
     }
 }
