@@ -96,6 +96,6 @@ public class MovingPlatform : MonoBehaviour
 [System.Serializable]
 class WayPoint
 {
-    public Vector2 position;
     public float speedFactor = 1.0f;
+    public Vector2 position;
 }
