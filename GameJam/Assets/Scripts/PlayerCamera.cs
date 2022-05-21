@@ -105,7 +105,7 @@ public class PlayerCamera : MonoBehaviour
             Gizmos.DrawWireCube(new Vector3(bounds.center.x, bounds.center.y, player.position.z), new Vector3(bounds.size.x, bounds.size.y, 0.01f));
 
             float height = calcPlaneHeight();
-            float width = height * 16 / 9;
+            float width = height * Screen.currentResolution.width / Screen.currentResolution.height;
 
             Gizmos.color = new Color(0, 1, 0.6f);
             Gizmos.DrawWireCube(new Vector3(bounds.center.x, bounds.center.y, player.position.z), new Vector3(bounds.size.x + width, bounds.size.y + height, 0.01f));
@@ -119,7 +119,7 @@ public class PlayerCamera : MonoBehaviour
         // considering a vertical FOV axis
         float planeHeight = calcPlaneHeight();
 
-        float planeWidth = planeHeight * 16 / 9;
+        float planeWidth = planeHeight * Screen.currentResolution.width / Screen.currentResolution.height;
 
         Vector3 center = new Vector3(transform.position.x, transform.position.y, player.position.z);
 
