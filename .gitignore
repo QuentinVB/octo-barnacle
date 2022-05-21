@@ -13,6 +13,8 @@
 /GameJam/Logs
 /GameJam/ProjectSettings
 /GameJam/Temp
+/GameJam/buildtest
+
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
