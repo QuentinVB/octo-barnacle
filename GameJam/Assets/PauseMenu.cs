@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -29,7 +30,8 @@ public class PauseMenu : MonoBehaviour
 
     }
 
-    void Resume(){
+
+    public void Resume(){
 
         //enlever le menu pause
         pauseMenuUi.SetActive(false);
@@ -38,5 +40,9 @@ public class PauseMenu : MonoBehaviour
         //changer le status du jeu
         gameIsPaused = false;
 
+    }
+
+    public void LoadMainMenu(){
+     SceneManager.LoadScene("MainMenu",LoadSceneMode.Single);
     }
 }
