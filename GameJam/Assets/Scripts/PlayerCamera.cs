@@ -1,7 +1,8 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Camera))]
 public class PlayerCamera : MonoBehaviour
 {
     
@@ -102,6 +103,36 @@ public class PlayerCamera : MonoBehaviour
         {
             Gizmos.color = new Color(0, 1, 0);
             Gizmos.DrawWireCube(new Vector3(bounds.center.x, bounds.center.y, player.position.z), new Vector3(bounds.size.x, bounds.size.y, 0.01f));
+
+            float height = calcPlaneHeight();
+            float width = height * 16 / 9;
+
+            Gizmos.color = new Color(0, 1, 0.6f);
+            Gizmos.DrawWireCube(new Vector3(bounds.center.x, bounds.center.y, player.position.z), new Vector3(bounds.size.x + width, bounds.size.y + height, 0.01f));
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Camera cam = gameObject.GetComponent<Camera>();
+
+        // considering a vertical FOV axis
+        float planeHeight = calcPlaneHeight();
+
+        float planeWidth = planeHeight * 16 / 9;
+
+        Vector3 center = new Vector3(transform.position.x, transform.position.y, player.position.z);
+
+        Gizmos.color = new Color(1, 0.5f, 0.25f);
+        Gizmos.DrawWireCube(center, new Vector3(planeWidth, planeHeight, 0.01f));
+
+        Gizmos.color = new Color(1, 0.3f, 0);
+        Gizmos.DrawSphere(center, 0.2f);
+    }
+
+    float calcPlaneHeight()
+    {
+        Camera cam = gameObject.GetComponent<Camera>();
+        return 2 * distance * Mathf.Tan(Mathf.Deg2Rad * cam.fieldOfView / 2.0f);
     }
 }
