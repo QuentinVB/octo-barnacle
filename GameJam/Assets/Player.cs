@@ -5,9 +5,9 @@ using UnityEngine.Sprites;
 
 public class Player : MonoBehaviour
 {
-    public float speed=2000f;
-    public float jumpSpeed=20000f;
-    private bool sneaked=false;
+    public float speed=9f;
+    public float jumpSpeed=20f;
+    private int sneaked=1;
     public GameObject player;
     public Collider coll;
     public Rigidbody rigidbody;
@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        respawnPoint.Add(new Vector3(0f,2f,0f));
+        respawnPoint.Add(new Vector3(738.08f,1.42f,-800.0405f));
         Physics.gravity=new Vector3(0, -1.0F, 0);
         player.name="bob"; // temp name
         coll=GetComponent<Collider>();
@@ -26,43 +26,43 @@ public class Player : MonoBehaviour
         rigidbody.freezeRotation=true;
         
         //Debug.Log(coll.attachedRigidbody.name);
+        
     }
 
     private void FixedUpdate() {
-        rigidbody.AddForce(new Vector3(0,-12f,0) * rigidbody.mass);
+        rigidbody.AddForce(new Vector3(0,-9.81f,0) * rigidbody.mass);
     }
     private void OnCollisionEnter(Collision other) {
         //Debug.Log("test");
+        if(other.gameObject.name=="Death"){Respawn(0);}
         jumped=false;
     }
     // Update is called once per frame
     void Update()
     {
+        sneaked=1;
         if(Input.GetKeyDown("r")){
             Debug.Log(rigidbody.position.y);
-            }
-        if(rigidbody.position.y<0){
-            Debug.Log("mort");
-            Respawn(0);
         }
         float horizontal=0f;
         float jump=0f;
         horizontal = Input.GetAxis("Horizontal") * speed; // negatif gauche , positif droite
         faceR= Input.GetAxis("Horizontal")>0 ? 1 :  ((Input.GetAxis("Horizontal")==0) ? faceR : -1);
-        //Debug.Log("translation * speed" + horizontal); 
 
         if(Input.GetAxis("Vertical")>0.2 && rigidbody.velocity.y==0f && !jumped){
             jump=jumpSpeed;
         }
         if(Input.GetAxis("Vertical")<0){
-            //sneaked=true;
+            sneaked=2;
             return;
         }
         if(Input.GetKeyDown("space")){ //Dash
-            horizontal=faceR * 2f;
+            Debug.Log("jump");
+            horizontal=faceR * 2000f * Time.deltaTime;
         }
-        Vector3 vec=new Vector3(horizontal*Time.deltaTime,jump*Time.deltaTime,0.0f);
-        rigidbody.AddForce(vec);
+        Vector3 vec=new Vector3(horizontal*Time.deltaTime/sneaked,jump*Time.deltaTime/sneaked,0.0f);
+        transform.Translate(vec);
+
     }
 
     void Respawn(int currentLevel){
