@@ -5,9 +5,9 @@ using UnityEngine.Sprites;
 
 public class Player : MonoBehaviour
 {
-    public float speed=2000f;
-    public float jumpSpeed=20000f;
-    private bool sneaked=false;
+    public float speed=9f;
+    public float jumpSpeed=20f;
+    private int sneaked=1;
     public GameObject player;
     public Collider coll;
     public Rigidbody rigidbody;
@@ -26,10 +26,11 @@ public class Player : MonoBehaviour
         rigidbody.freezeRotation=true;
         
         //Debug.Log(coll.attachedRigidbody.name);
+        
     }
 
     private void FixedUpdate() {
-        rigidbody.AddForce(new Vector3(0,-12f,0) * rigidbody.mass);
+        rigidbody.AddForce(new Vector3(0,-9.81f,0) * rigidbody.mass);
     }
     private void OnCollisionEnter(Collision other) {
         //Debug.Log("test");
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        sneaked=1;
         if(Input.GetKeyDown("r")){
             Debug.Log(rigidbody.position.y);
             }
@@ -49,20 +51,21 @@ public class Player : MonoBehaviour
         float jump=0f;
         horizontal = Input.GetAxis("Horizontal") * speed; // negatif gauche , positif droite
         faceR= Input.GetAxis("Horizontal")>0 ? 1 :  ((Input.GetAxis("Horizontal")==0) ? faceR : -1);
-        //Debug.Log("translation * speed" + horizontal); 
 
         if(Input.GetAxis("Vertical")>0.2 && rigidbody.velocity.y==0f && !jumped){
             jump=jumpSpeed;
         }
         if(Input.GetAxis("Vertical")<0){
-            //sneaked=true;
+            sneaked=2;
             return;
         }
         if(Input.GetKeyDown("space")){ //Dash
-            horizontal=faceR * 2f;
+            Debug.Log("jump");
+            horizontal=faceR * 2000f * Time.deltaTime;
         }
-        Vector3 vec=new Vector3(horizontal*Time.deltaTime,jump*Time.deltaTime,0.0f);
-        rigidbody.AddForce(vec);
+        Vector3 vec=new Vector3(horizontal*Time.deltaTime/sneaked,jump*Time.deltaTime/sneaked,0.0f);
+        transform.Translate(vec);
+
     }
 
     void Respawn(int currentLevel){
