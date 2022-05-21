@@ -8,6 +8,10 @@ public class PlayerCamera : MonoBehaviour
     
     [SerializeField]
     private float distance;
+
+    [SerializeField]
+    private float verticalOffset;
+
     private Vector3 offset;
 
     [SerializeField]
@@ -33,7 +37,7 @@ public class PlayerCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        offset = -new Vector3(0, 0, distance);
+        offset = new Vector3(0, verticalOffset, -distance);
 
         wasCloseToPlayer = true;
     }
