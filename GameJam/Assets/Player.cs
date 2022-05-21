@@ -5,45 +5,55 @@ using UnityEngine.Sprites;
 
 public class Player : MonoBehaviour
 {
-    private float speed=.05f;
-    private float jumpSpeed=.05f;
+    public float speed=2000f;
+    public float jumpSpeed=20000f;
     private bool sneaked=false;
     public GameObject player;
     public Collider coll;
+    public Rigidbody rigidbody;
     private int faceR=1;
+    private bool jumped=true;
     // Start is called before the first frame update
     void Start()
     {
+        Physics.gravity=new Vector3(0, -1.0F, 0);
         player.name="bob"; // temp name
-        coll.isTrigger = true;
-        coll.attachedRigidbody.useGravity=true;
+        coll=GetComponent<Collider>();
+        coll.isTrigger = false;
+        rigidbody =GetComponent<Rigidbody>();
+        rigidbody.freezeRotation=true;
+        
         //Debug.Log(coll.attachedRigidbody.name);
     }
 
+    private void FixedUpdate() {
+        rigidbody.AddForce(new Vector3(0,-12f,0) * rigidbody.mass);
+    }
+    private void OnCollisionEnter(Collision other) {
+        Debug.Log("test");
+        jumped=false;
+    }
     // Update is called once per frame
     void Update()
     {
         float horizontal=0f;
         float jump=0f;
-        //10 metres par seconde
         horizontal = Input.GetAxis("Horizontal") * speed; // negatif gauche , positif droite
         faceR= Input.GetAxis("Horizontal")>0 ? 1 :  ((Input.GetAxis("Horizontal")==0) ? faceR : -1);
         //Debug.Log("translation * speed" + horizontal); 
 
-        if(Input.GetAxis("Vertical")>0.1){
-            jump=jumpSpeed + (sneaked ? .02f : 0f);
-            //Debug.Log("Jump value : " + jump);
+        if(Input.GetAxis("Vertical")>0.2 && rigidbody.velocity.y==0f && !jumped){
+            jump=jumpSpeed;
+
         }
-        else if(Input.GetAxis("Vertical")<0){
-            Debug.Log("sneak");
-            sneaked=true;
+        if(Input.GetAxis("Vertical")<0){
+            //sneaked=true;
             return;
         }
         if(Input.GetKeyDown("space")){ //Dash
             horizontal=faceR * 2f;
         }
-        sneaked=false;
-        //player.transform.forward=new Vector3(horizontal,0,0);
-        player.transform.Translate(horizontal,jump,0);
+        Vector3 vec=new Vector3(horizontal*Time.deltaTime,jump*Time.deltaTime,0.0f);
+        rigidbody.AddForce(vec);
     }
 }
