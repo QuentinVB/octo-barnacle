@@ -11,11 +11,13 @@ public class Player : MonoBehaviour
     public GameObject player;
     public Collider coll;
     public Rigidbody rigidbody;
+    public List<Vector3> respawnPoint=new List<Vector3>();
     private int faceR=1;
     private bool jumped=true;
     // Start is called before the first frame update
     void Start()
     {
+        respawnPoint.Add(new Vector3(0f,2f,0f));
         Physics.gravity=new Vector3(0, -1.0F, 0);
         player.name="bob"; // temp name
         coll=GetComponent<Collider>();
@@ -30,12 +32,19 @@ public class Player : MonoBehaviour
         rigidbody.AddForce(new Vector3(0,-12f,0) * rigidbody.mass);
     }
     private void OnCollisionEnter(Collision other) {
-        Debug.Log("test");
+        //Debug.Log("test");
         jumped=false;
     }
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown("r")){
+            Debug.Log(rigidbody.position.y);
+            }
+        if(rigidbody.position.y<0){
+            Debug.Log("mort");
+            Respawn(0);
+        }
         float horizontal=0f;
         float jump=0f;
         horizontal = Input.GetAxis("Horizontal") * speed; // negatif gauche , positif droite
@@ -44,7 +53,6 @@ public class Player : MonoBehaviour
 
         if(Input.GetAxis("Vertical")>0.2 && rigidbody.velocity.y==0f && !jumped){
             jump=jumpSpeed;
-
         }
         if(Input.GetAxis("Vertical")<0){
             //sneaked=true;
@@ -55,5 +63,9 @@ public class Player : MonoBehaviour
         }
         Vector3 vec=new Vector3(horizontal*Time.deltaTime,jump*Time.deltaTime,0.0f);
         rigidbody.AddForce(vec);
+    }
+
+    void Respawn(int currentLevel){
+        rigidbody.position=respawnPoint[currentLevel];
     }
 }

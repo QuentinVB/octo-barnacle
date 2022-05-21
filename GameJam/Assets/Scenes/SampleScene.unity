@@ -287,7 +287,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651211018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -340,6 +340,7 @@ MonoBehaviour:
   player: {fileID: 651211018}
   coll: {fileID: 1379330137}
   rigidbody: {fileID: 651211023}
+  respawnPoint: []
 --- !u!1 &1379330134
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,7 +419,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1379330134}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.9435, y: -4.2565, z: 0}
+  m_LocalPosition: {x: 0.9435, y: 0, z: 0}
   m_LocalScale: {x: 15.765943, y: 0.7282188, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
