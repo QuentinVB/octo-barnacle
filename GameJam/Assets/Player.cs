@@ -16,16 +16,18 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float horizontal=0f;
+        float jump=0f;
         //10 metres par seconde
-        float horizontal = Input.GetAxis("Horizontal") * speed; // negatif gauche , positif droite
+        horizontal = Input.GetAxis("Horizontal") * speed; // negatif gauche , positif droite
         float vertical = Input.GetAxis("Horizontal") ;
         horizontal *=Time.deltaTime;
-        transform.Translate(horizontal,0,0);
         //Debug.Log("translation * speed" + horizontal); 
 
         if(Input.GetAxis("Vertical")>0.1){
             Debug.Log("jump");
-            float jump=jumpSpeed + (sneaked ? 2f : 0f);
+            jump=jumpSpeed + (sneaked ? 2f : 0f);
+            
             Debug.Log(jump);
         }
         else if(Input.GetAxis("Vertical")<0){
@@ -34,7 +36,7 @@ public class Player : MonoBehaviour
             return;
         }     
         sneaked=false;
-        
+        transform.Translate(horizontal,jump,0);
 
     }
 }

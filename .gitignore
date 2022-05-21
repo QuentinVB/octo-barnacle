@@ -63,3 +63,5 @@ sysinfo.txt
 crashlytics-build.properties
 
 GameJam/.vscode/settings.json
+GameJam/obj/Debug/.NETFramework,Version=v4.7.1.AssemblyAttributes.cs
+GameJam/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache
