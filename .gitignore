@@ -63,20 +63,3 @@ sysinfo.txt
 crashlytics-build.properties
 
 GameJam/.vscode/settings.json
-GameJam/Assets/Scenes/SampleScene.unity
-GameJam/Assets/Scenes/SampleScene.unity.meta
-GameJam/Library/AnnotationManager
-GameJam/Library/ArtifactDB
-GameJam/Library/ArtifactDB-lock
-GameJam/Library/BuildPlayer.prefs
-GameJam/Library/BuildSettings.asset
-GameJam/Library/EditorInstance.json
-GameJam/Library/EditorOnlyScriptingSettings.json
-GameJam/Library/EditorOnlyVirtualTextureState.json
-GameJam/Library/EditorUserBuildSettings.asset
-GameJam/Library/InspectorExpandedItems.asset
-GameJam/Library/LastSceneManagerSetup.txt
-GameJam/Packages/manifest.json
-GameJam/Packages/packages-lock.json
-GameJam/UserSettings/EditorUserSettings.asset
-GameJam/UserSettings/Layouts/default-2021.dwlt
