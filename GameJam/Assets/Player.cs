@@ -1,16 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Sprites;
 
 public class Player : MonoBehaviour
 {
     private float speed=10f;
     private float jumpSpeed=5f;
     private bool sneaked=false;
+    GameObject player;
+    public Collider coll;
     // Start is called before the first frame update
     void Start()
     {
-           
+        player=new GameObject();
+        player.name="bob";
+        player.AddComponent<Rigidbody>();
+        coll = GetComponent<Collider>();
+        coll.isTrigger = true;
+        coll.attachedRigidbody.useGravity=true;
     }
 
     // Update is called once per frame
@@ -37,6 +45,5 @@ public class Player : MonoBehaviour
         }     
         sneaked=false;
         transform.Translate(horizontal,jump,0);
-
     }
 }
