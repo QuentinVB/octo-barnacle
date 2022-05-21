@@ -15,6 +15,10 @@ public class Player : MonoBehaviour
     private int faceR=1;
     private bool jumped=true;
     // Start is called before the first frame update
+
+    [SerializeField]
+    private float deathLevel = -15.0f;
+
     void Start()
     {
         respawnPoint.Add(new Vector3(0f,2f,0f));
@@ -41,7 +45,7 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown("r")){
             Debug.Log(rigidbody.position.y);
             }
-        if(rigidbody.position.y<0){
+        if(rigidbody.position.y < deathLevel){
             Debug.Log("mort");
             Respawn(0);
         }
