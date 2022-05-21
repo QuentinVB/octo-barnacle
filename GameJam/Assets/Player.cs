@@ -15,6 +15,10 @@ public class Player : MonoBehaviour
     private int faceR=1;
     private bool jumped=false;
     // Start is called before the first frame update
+
+    [SerializeField]
+    private float deathLevel = -15.0f;
+
     void Start()
     {
         respawnPoint.Add(new Vector3(738.08f,1.42f,-800.0405f));
@@ -44,6 +48,10 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown("r")){
             Debug.Log(rigidbody.position.y);
         }
+        if(rigidbody.position.y < deathLevel){
+            Debug.Log("mort");
+            Respawn(0);
+        }
         float horizontal=0f;
         float jump=0f;
         horizontal = Input.GetAxis("Horizontal") * speed; // negatif gauche , positif droite
@@ -67,7 +75,7 @@ public class Player : MonoBehaviour
 
     }
 
-    void Respawn(int currentLevel){
+    public void Respawn(int currentLevel){
         rigidbody.position=respawnPoint[currentLevel];
     }
 }
