@@ -8,7 +8,7 @@ public class MovingPlatform : MonoBehaviour
     private List<WayPoint> waypoints;
 
     [SerializeField]
-    private float speed = 2.0f;
+    private float speed = 1.0f;
 
     [SerializeField]
     private int targetidx = 0;

@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
             jumped=true;
             grounded=false;
         }
-        if(Input.GetAxis("Vertical")<0){
+        if (Input.GetAxis("Vertical")<0){
             sneaked=2;
             return;
         }
