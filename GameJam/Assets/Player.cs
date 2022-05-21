@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public List<Vector3> respawnPoint=new List<Vector3>();
     private int faceR=1;
     private bool jumped=false;
+    private bool grounded;
     // Start is called before the first frame update
 
     [SerializeField]
@@ -36,10 +37,17 @@ public class Player : MonoBehaviour
     private void FixedUpdate() {
         rigidbody.AddForce(new Vector3(0,-9.81f,0) * rigidbody.mass);
     }
-    private void OnCollisionEnter(Collision other) {
-        Debug.Log("test");
-        if(other.gameObject.name=="Death"){Respawn(0);}
-        jumped=false;
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.name == "Death") { Respawn(0); }
+        Collider[] hitColliders = Physics.OverlapSphere(rigidbody.position, 5.0f);
+        grounded = false;
+        foreach (Collider collid in hitColliders)
+        {
+            if (collid.transform.position.y < rigidbody.position.y) { grounded = true; }
+        }
+        jumped = false;
+        Debug.Log("grounded : " + grounded);
     }
     // Update is called once per frame
     void Update()
@@ -57,12 +65,14 @@ public class Player : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal") * speed; // negatif gauche , positif droite
         faceR= Input.GetAxis("Horizontal")>0 ? 1 :  ((Input.GetAxis("Horizontal")==0) ? faceR : -1);
 
-        if(Input.GetAxis("Vertical")>0 && rigidbody.velocity.y<0f &&!jumped){
-            jump=jumpSpeed;
-            jumped=true;
-            Debug.Log("lkgdfjnlkg");
+        if (Input.GetAxis("Vertical") > 0 && grounded)
+        {
+            Debug.Log("Jump");
+            jump = jumpSpeed;
+            jumped = true;
+            grounded = false;
         }
-        if(Input.GetAxis("Vertical")<0){
+        if (Input.GetAxis("Vertical")<0){
             sneaked=2;
             return;
         }
