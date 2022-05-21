@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        respawnPoint.Add(new Vector3(0f,2f,0f));
+        respawnPoint.Add(new Vector3(738.08f,1.42f,-800.0405f));
         Physics.gravity=new Vector3(0, -1.0F, 0);
         player.name="bob"; // temp name
         coll=GetComponent<Collider>();
@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other) {
         //Debug.Log("test");
+        if(other.gameObject.name=="Death"){Respawn(0);}
         jumped=false;
     }
     // Update is called once per frame
@@ -42,10 +43,6 @@ public class Player : MonoBehaviour
         sneaked=1;
         if(Input.GetKeyDown("r")){
             Debug.Log(rigidbody.position.y);
-            }
-        if(rigidbody.position.y<0){
-            Debug.Log("mort");
-            Respawn(0);
         }
         float horizontal=0f;
         float jump=0f;
