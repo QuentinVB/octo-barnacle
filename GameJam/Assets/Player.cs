@@ -6,14 +6,14 @@ using UnityEngine.Sprites;
 public class Player : MonoBehaviour
 {
     public float speed=9f;
-    public float jumpSpeed=20f;
+    public float jumpSpeed=20000f;
     private int sneaked=1;
     public GameObject player;
     public Collider coll;
     public Rigidbody rigidbody;
     public List<Vector3> respawnPoint=new List<Vector3>();
     private int faceR=1;
-    private bool jumped=true;
+    private bool jumped=false;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         rigidbody.AddForce(new Vector3(0,-9.81f,0) * rigidbody.mass);
     }
     private void OnCollisionEnter(Collision other) {
-        //Debug.Log("test");
+        Debug.Log("test");
         if(other.gameObject.name=="Death"){Respawn(0);}
         jumped=false;
     }
@@ -49,15 +49,17 @@ public class Player : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal") * speed; // negatif gauche , positif droite
         faceR= Input.GetAxis("Horizontal")>0 ? 1 :  ((Input.GetAxis("Horizontal")==0) ? faceR : -1);
 
-        if(Input.GetAxis("Vertical")>0.2 && rigidbody.velocity.y==0f && !jumped){
+        if(Input.GetAxis("Vertical")>0 && rigidbody.velocity.y<0f &&!jumped){
             jump=jumpSpeed;
+            jumped=true;
+            Debug.Log("lkgdfjnlkg");
         }
         if(Input.GetAxis("Vertical")<0){
             sneaked=2;
             return;
         }
         if(Input.GetKeyDown("space")){ //Dash
-            Debug.Log("jump");
+            Debug.Log("Dash");
             horizontal=faceR * 2000f * Time.deltaTime;
         }
         Vector3 vec=new Vector3(horizontal*Time.deltaTime/sneaked,jump*Time.deltaTime/sneaked,0.0f);
