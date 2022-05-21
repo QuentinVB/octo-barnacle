@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
         rigidbody.AddForce(vec);
     }
 
-    void Respawn(int currentLevel){
+    public void Respawn(int currentLevel){
         rigidbody.position=respawnPoint[currentLevel];
     }
 }
