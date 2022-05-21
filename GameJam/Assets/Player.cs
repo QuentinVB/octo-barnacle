@@ -5,11 +5,12 @@ using UnityEngine.Sprites;
 
 public class Player : MonoBehaviour
 {
-    private float speed=10f;
-    private float jumpSpeed=5f;
+    private float speed=.05f;
+    private float jumpSpeed=.05f;
     private bool sneaked=false;
     public GameObject player;
     public Collider coll;
+    private int faceR=1;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,20 +27,23 @@ public class Player : MonoBehaviour
         float jump=0f;
         //10 metres par seconde
         horizontal = Input.GetAxis("Horizontal") * speed; // negatif gauche , positif droite
-        float vertical = Input.GetAxis("Horizontal") ;
-        horizontal *=Time.deltaTime;
+        faceR= Input.GetAxis("Horizontal")>0 ? 1 :  ((Input.GetAxis("Horizontal")==0) ? faceR : -1);
         //Debug.Log("translation * speed" + horizontal); 
 
         if(Input.GetAxis("Vertical")>0.1){
-            jump=jumpSpeed + (sneaked ? 2f : 0f);
+            jump=jumpSpeed + (sneaked ? .02f : 0f);
             //Debug.Log("Jump value : " + jump);
         }
         else if(Input.GetAxis("Vertical")<0){
             Debug.Log("sneak");
             sneaked=true;
             return;
-        }     
+        }
+        if(Input.GetKeyDown("space")){ //Dash
+            horizontal=faceR * 2f;
+        }
         sneaked=false;
+        //player.transform.forward=new Vector3(horizontal,0,0);
         player.transform.Translate(horizontal,jump,0);
     }
 }
