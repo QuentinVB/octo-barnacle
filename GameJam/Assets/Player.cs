@@ -8,17 +8,15 @@ public class Player : MonoBehaviour
     private float speed=10f;
     private float jumpSpeed=5f;
     private bool sneaked=false;
-    GameObject player;
+    public GameObject player;
     public Collider coll;
     // Start is called before the first frame update
     void Start()
     {
-        player=new GameObject();
-        player.name="bob";
-        player.AddComponent<Rigidbody>();
-        coll = GetComponent<Collider>();
+        player.name="bob"; // temp name
         coll.isTrigger = true;
         coll.attachedRigidbody.useGravity=true;
+        //Debug.Log(coll.attachedRigidbody.name);
     }
 
     // Update is called once per frame
@@ -33,10 +31,8 @@ public class Player : MonoBehaviour
         //Debug.Log("translation * speed" + horizontal); 
 
         if(Input.GetAxis("Vertical")>0.1){
-            Debug.Log("jump");
             jump=jumpSpeed + (sneaked ? 2f : 0f);
-            
-            Debug.Log(jump);
+            //Debug.Log("Jump value : " + jump);
         }
         else if(Input.GetAxis("Vertical")<0){
             Debug.Log("sneak");
