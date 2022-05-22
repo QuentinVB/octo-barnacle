@@ -56,7 +56,6 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1066962011108201164}
-  - {fileID: -7431433567715068031}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -97,28 +96,33 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1101 &-7431433567715068031
-AnimatorStateTransition:
+--- !u!1102 &-7038949587788560184
+AnimatorState:
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions: []
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: -8348932943777703722}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0
-  m_TransitionOffset: 0
-  m_ExitTime: 0.375
-  m_HasExitTime: 1
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
+  m_Name: BobRigging|Bob-Dash
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions:
+  - {fileID: 4719421229792685411}
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 2308890148816520397, guid: 1c48b067039d53042ac2b959239c1a5b, type: 3}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1107 &-5731143938029777572
 AnimatorStateMachine:
   serializedVersion: 6
@@ -133,7 +137,7 @@ AnimatorStateMachine:
     m_Position: {x: 290, y: 160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5098090647325082122}
-    m_Position: {x: 160, y: 10, z: 0}
+    m_Position: {x: 50, y: 10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1520250675257560733}
     m_Position: {x: 610, y: 50, z: 0}
@@ -142,7 +146,7 @@ AnimatorStateMachine:
     m_Position: {x: 430, y: -260, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1532700669117142425}
-    m_Position: {x: 520, y: -140, z: 0}
+    m_Position: {x: 510, y: -130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4259658658370918858}
     m_Position: {x: 300, y: -130, z: 0}
@@ -152,12 +156,15 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: -3919097963491039788}
     m_Position: {x: 610, y: 230, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -7038949587788560184}
+    m_Position: {x: 80, y: -330, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 20, y: -60, z: 0}
+  m_AnyStatePosition: {x: -80, y: -70, z: 0}
   m_EntryPosition: {x: -100, y: 150, z: 0}
   m_ExitPosition: {x: 60, y: 270, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
@@ -220,7 +227,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BobRigging|Bob-Saut-Start
-  m_Speed: 1
+  m_Speed: 3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 4825612005643599561}
@@ -471,7 +478,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: isDashing
+  - m_Name: isLanding
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -522,16 +529,19 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: isLanding
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1532700669117142425}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.1
+  m_TransitionDuration: 0.04
   m_TransitionOffset: 0
-  m_ExitTime: 0.375
+  m_ExitTime: 0.91
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -629,6 +639,28 @@ AnimatorStateTransition:
   m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_ExitTime: 1
+  m_HasExitTime: 1
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1101 &4719421229792685411
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions: []
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: -3433707682565183313}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.375
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
