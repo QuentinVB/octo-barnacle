@@ -7,7 +7,7 @@ using UnityEngine;
 public class BreakingPlateform : MonoBehaviour
 {
 
-    Collider collider;
+    Collider coll;
     MeshRenderer mr;
 
     [SerializeField]
@@ -23,13 +23,11 @@ public class BreakingPlateform : MonoBehaviour
     private bool breaking = false;
     private Vector3 originalPos;
 
-    
-
     // Start is called before the first frame update
     private void Awake()
     {
         mr = GetComponent<MeshRenderer>();
-        collider = GetComponent<Collider>();
+        coll = GetComponent<Collider>();
     }
 
     private void Update()
@@ -61,14 +59,14 @@ public class BreakingPlateform : MonoBehaviour
         breaking = false;
 
         mr.enabled = false;
-        collider.enabled = false;
+        coll.enabled = false;
 
         if (respawn)
         {
             yield return new WaitForSeconds(respawnDelay);
 
             mr.enabled = true;
-            collider.enabled = true;
+            coll.enabled = true;
         }
     }
 }
