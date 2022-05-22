@@ -6,20 +6,20 @@ using UnityEngine.Sprites;
 public class Player : MonoBehaviour
 {
     public float speed=9f;
-    public float speedmax=19f;
     public float jumpSpeed=1.8f;
     private int sneaked=1;
     public GameObject player;
     public Collider coll;
     public Rigidbody rigidbody;
-    private float coolDownDash=1f;
-    private float dashUp;
     public List<Vector3> respawnPoint=new List<Vector3>();
-    public int respawnFlag=0;
+    private int respawnFlag=0;
     private int faceR=1;
     bool grounded=false;
     private bool dashed=false;
     // Start is called before the first frame update
+
+    [SerializeField]
+    private float gravity = -9.81f;
 
     [SerializeField]
     private float deathLevel = -15.0f;
@@ -30,25 +30,40 @@ public class Player : MonoBehaviour
         coll=GetComponent<Collider>();
         coll.isTrigger = false;
         rigidbody =GetComponent<Rigidbody>();
-        rigidbody.freezeRotation=true;       
-        dashUp=Time.time;
+        rigidbody.freezeRotation=true;
+        
+        //Debug.Log(coll.attachedRigidbody.name);
+        
     }
 
     private void FixedUpdate() {
-        rigidbody.AddForce(new Vector3(0,-9.81f,0) );
-        Collider[] hitColliders = Physics.OverlapSphere(rigidbody.position, 1.21f);
+        rigidbody.AddForce(new Vector3(0, gravity,0) * rigidbody.mass);
+        Collider[] hitColliders = Physics.OverlapSphere(rigidbody.position, 1.25f);
         grounded=false;
-        if(player.transform.position.y<-15){return;}
         foreach(Collider collid in hitColliders){
             if(collid.transform.position==rigidbody.position){continue;}
             if(collid.transform.position.y < rigidbody.position.y){grounded=true;}
             if(collid.name.Contains("spike")){Respawn(respawnFlag);}
         }
-        if(!grounded && rigidbody.velocity.x>12){rigidbody.AddForce(-12f,0,0);}
     }
     private void OnCollisionEnter(Collision other) {
-        if(other.gameObject.tag=="Death"){Respawn(respawnFlag);}
+        if(other.gameObject.name=="Death"){Respawn(respawnFlag);}
+        Debug.Log(other);
+        
+        if (other.gameObject.tag == "MovingPlatform")
+        {
+            transform.SetParent(other.transform, true);
+        }
     }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "MovingPlatform")
+        {
+            transform.SetParent(null);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -58,44 +73,56 @@ public class Player : MonoBehaviour
         }
         if(rigidbody.position.y < deathLevel){
             Debug.Log("mort");
-            Respawn(respawnFlag);
+            Respawn(0);
         }
         float horizontal=0f;
         float jump=0f;
-        //faceR= Input.GetAxis("Horizontal")>0 ? -1 :  ((Input.GetAxis("Horizontal")==0) ? faceR : 1);
-        if(Input.GetKey("left shift")){
-            Debug.Log("dash");
-            if(Time.time<dashUp){Debug.Log("can't dash");}
-            else if(Input.GetKey("d") ){horizontal=Dash(1);dashUp=coolDownDash+Time.time;}
-            else if(Input.GetKey("q")){horizontal=Dash(-1);dashUp=coolDownDash+Time.time;}
-            rigidbody.AddForce(horizontal,0f,0f);
-            horizontal=0f;
-        }
-        else{
-            if(Input.GetKey("d")){horizontal+=-rigidbody.velocity.x +speed;}
-            else if(Input.GetKey("q")){horizontal+=-(rigidbody.velocity.x +speed);}
-            if(!grounded){horizontal/=6;}
-        }
-       
-        
-        // if (Input.GetAxis("Vertical")<0){
-        //     sneaked=2;
-        //     return;
-        // }
-        
-        if(Input.GetKeyDown("space") && grounded && rigidbody.velocity.x<speedmax){ //jump
-            jump=jumpSpeed*3;
+        horizontal = Input.GetAxis("Horizontal") * speed; // negatif gauche , positif droite
+        faceR= Input.GetAxis("Horizontal")>0 ? -1 :  ((Input.GetAxis("Horizontal")==0) ? faceR : 1);
+
+        if(Input.GetKeyDown("d")){horizontal=Dash(1);}
+        else if(Input.GetKeyDown("q")){horizontal=Dash(-1);}
+        else if(Input.GetAxis("Vertical")>0 && grounded){
+            Debug.Log("Jump");
+            jump=jumpSpeed;
             grounded=false;
-            dashed=false;
         }
+        if (Input.GetAxis("Vertical")<0){
+            sneaked=2;
+            return;
+        }
+        
+        if(Input.GetKeyDown("space") && grounded){ //jump
+            //horizontal=speed *faceR * 2000f * Time.deltaTime;
+            jump=jumpSpeed*Time.deltaTime;
+        }
+        Vector3 vec=new Vector3(horizontal*Time.deltaTime/sneaked,0f,0.0f);
+        //transform.Translate(vec);
         rigidbody.AddForce(new Vector3(horizontal,jump,0f));
+
     }
 
     public void Respawn(int currentLevel){
-        //Debug.Log(currentLevel);
         rigidbody.position=respawnPoint[currentLevel];
     }
     public float Dash(int direction){
-        return direction * 500;
+        if(!grounded && dashed){return 0.0f;}
+        Collider[] hitColliders = Physics.OverlapSphere(rigidbody.position, 10f);
+        foreach(Collider collid in hitColliders){
+            if(collid.transform.position!=rigidbody.transform.position && collid.name!="sol"){
+                if(direction==-1 && collid.transform.position.x<rigidbody.transform.position.x){
+                    Debug.Log(collid.name);
+                    dashed=true;
+                    return 9 *direction * 5000f * Time.deltaTime/10 * (-collid.transform.position.x + rigidbody.position.x);
+                }
+                else if(direction==1 && collid.transform.position.x>rigidbody.transform.position.x){
+                    Debug.Log(collid.name);
+                    dashed=true;
+                    return 9 *direction * 5000f * Time.deltaTime/10 * (collid.transform.position.x - rigidbody.position.x);
+                }
+            }
+        }
+        dashed=true;
+        return 9 *direction * 5000f * Time.deltaTime;
     }
 }

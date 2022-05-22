@@ -127,11 +127,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9848b77c96bc547d4a7b04297bc53786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1500
-  jumpSpeed: 20000
+  speed: 9
+  jumpSpeed: 2.8
   player: {fileID: 3425792314215547639}
   coll: {fileID: 0}
   rigidbody: {fileID: 3425792314215547641}
   respawnPoint:
-  - {x: -75, y: -7.6, z: 0}
+  - {x: 0, y: 0, z: 0}
   deathLevel: -15
