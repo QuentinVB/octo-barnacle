@@ -2633,7 +2633,7 @@ PrefabInstance:
       objectReference: {fileID: 8992189536428788691}
     - target: {fileID: 8992189536489779946, guid: 98a6e5d79d7d83a44a5652798a38fa34, type: 3}
       propertyPath: jumpSpeed
-      value: 2.8
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 8992189536489779946, guid: 98a6e5d79d7d83a44a5652798a38fa34, type: 3}
       propertyPath: respawnPoint.Array.data[0].x

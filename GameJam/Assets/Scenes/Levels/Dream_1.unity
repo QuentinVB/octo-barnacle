@@ -2345,20 +2345,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8992189536489779946, guid: 98a6e5d79d7d83a44a5652798a38fa34, type: 3}
-      propertyPath: coll
-      value: 
-      objectReference: {fileID: 8992189536428788691}
-    - target: {fileID: 8992189536489779946, guid: 98a6e5d79d7d83a44a5652798a38fa34, type: 3}
       propertyPath: jumpSpeed
-      value: 2.8
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 8992189536489779946, guid: 98a6e5d79d7d83a44a5652798a38fa34, type: 3}
       propertyPath: respawnPoint.Array.data[0].x
-      value: -60
+      value: -59.8
       objectReference: {fileID: 0}
     - target: {fileID: 8992189536489779946, guid: 98a6e5d79d7d83a44a5652798a38fa34, type: 3}
       propertyPath: respawnPoint.Array.data[0].y
-      value: 1.14
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 8992189536489779950, guid: 98a6e5d79d7d83a44a5652798a38fa34, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2442,8 +2438,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98a6e5d79d7d83a44a5652798a38fa34, type: 3}
---- !u!65 &8992189536428788691 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 8992189536489779944, guid: 98a6e5d79d7d83a44a5652798a38fa34, type: 3}
-  m_PrefabInstance: {fileID: 8992189536428788690}
-  m_PrefabAsset: {fileID: 0}
