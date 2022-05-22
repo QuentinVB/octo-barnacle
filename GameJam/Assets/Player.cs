@@ -6,7 +6,7 @@ using UnityEngine.Sprites;
 public class Player : MonoBehaviour
 {
     public float speed=9f;
-    public float jumpSpeed=20f;
+    public float jumpSpeed=1.8f;
     private int sneaked=1;
     public GameObject player;
     public Collider coll;

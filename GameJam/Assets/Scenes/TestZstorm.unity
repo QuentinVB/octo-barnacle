@@ -999,7 +999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 9
-  jumpSpeed: 200
+  jumpSpeed: 2.8
   player: {fileID: 1225758296}
   coll: {fileID: 1225758297}
   rigidbody: {fileID: 1225758298}
