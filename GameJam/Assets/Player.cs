@@ -98,7 +98,9 @@ public class Player : MonoBehaviour
     }
 
     public void Respawn(int currentLevel){
-        rigidbody.position=respawnPoint[currentLevel];
+
+        transform.SetParent(null);
+        transform.position=respawnPoint[currentLevel];
     }
     public float Dash(int direction){
         Collider[] hitColliders = Physics.OverlapSphere(rigidbody.position, 3.6f);
