@@ -803,6 +803,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 4_plat (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5536478238596953541, guid: 12d4c5b8b3a0046479c617f32d37af00, type: 3}
+      propertyPath: m_TagString
+      value: MovingPlatform
+      objectReference: {fileID: 0}
     - target: {fileID: 9053031516377485500, guid: 12d4c5b8b3a0046479c617f32d37af00, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -945,6 +949,10 @@ PrefabInstance:
     - target: {fileID: 5536478238596953541, guid: 12d4c5b8b3a0046479c617f32d37af00, type: 3}
       propertyPath: m_Name
       value: 4_plat (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536478238596953541, guid: 12d4c5b8b3a0046479c617f32d37af00, type: 3}
+      propertyPath: m_TagString
+      value: MovingPlatform
       objectReference: {fileID: 0}
     - target: {fileID: 9053031516377485500, guid: 12d4c5b8b3a0046479c617f32d37af00, type: 3}
       propertyPath: m_RootOrder
@@ -1841,6 +1849,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 4_plat
       objectReference: {fileID: 0}
+    - target: {fileID: 5536478238596953541, guid: 12d4c5b8b3a0046479c617f32d37af00, type: 3}
+      propertyPath: m_TagString
+      value: MovingPlatform
+      objectReference: {fileID: 0}
     - target: {fileID: 9053031516377485500, guid: 12d4c5b8b3a0046479c617f32d37af00, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1986,7 +1998,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8992189536489779946, guid: 98a6e5d79d7d83a44a5652798a38fa34, type: 3}
       propertyPath: jumpSpeed
-      value: 90
+      value: 2.8
       objectReference: {fileID: 0}
     - target: {fileID: 8992189536489779946, guid: 98a6e5d79d7d83a44a5652798a38fa34, type: 3}
       propertyPath: respawnPoint.Array.data[0].x

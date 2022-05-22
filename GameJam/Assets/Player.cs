@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag == "MovingPlateform")
+        if (collision.gameObject.tag == "MovingPlatform")
         {
             transform.SetParent(null);
         }
