@@ -37,11 +37,13 @@ public class Player : MonoBehaviour
         rigidbody =GetComponent<Rigidbody>();
         rigidbody.freezeRotation=true;       
         dashUp=Time.time;
-        animator.Play("BobRigging|Bob-Idle1");
+
+        //animator.Play("BobRigging|Bob-Idle1");
     }
 
     private void FixedUpdate() {
         rigidbody.AddForce(new Vector3(0,-9.81f,0) );
+
         Collider[] hitColliders = Physics.OverlapSphere(rigidbody.position, 1.21f);
         grounded=false;
         if(player.transform.position.y<-15){return;}
@@ -92,23 +94,43 @@ public class Player : MonoBehaviour
             horizontal=0f;
         }
         else{
-            if(Input.GetKey("d")){horizontal+=-rigidbody.velocity.x +speed;}
-            else if(Input.GetKey("q")){horizontal+=-(rigidbody.velocity.x +speed);}
+            if(Input.GetKey("d")){
+                horizontal+=-rigidbody.velocity.x +speed;
+            }
+            else if(Input.GetKey("q")){
+                horizontal+=-(rigidbody.velocity.x +speed);
+                
+            }
+            
+            if(Mathf.Abs(horizontal)> 0.001 && grounded)
+            {
+                animator.SetBool("isRunning", true);
+            }
+            else
+            {
+                animator.SetBool("isRunning", false);
+            }
             if(!grounded){horizontal/=6;}
         }
-       
+
         
         // if (Input.GetAxis("Vertical")<0){
         //     sneaked=2;
         //     return;
         // }
         
-        if(Input.GetKeyDown("space") && grounded && rigidbody.velocity.x<speedmax){ //jump
-            jump=jumpSpeed*3;
+        if(Input.GetKeyDown("space") && grounded && rigidbody.velocity.x<speedmax){
+            //jump
+            animator.SetBool("isJumping", true);
+            jump =jumpSpeed*3;
             grounded=false;
             dashed=false;
         }
         rigidbody.AddForce(new Vector3(horizontal,jump,0f));
+        if(grounded)
+        {
+            animator.SetBool("isJumping", false);
+        }
     }
 
     public void Respawn(int currentLevel){
