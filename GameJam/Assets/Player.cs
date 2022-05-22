@@ -12,8 +12,8 @@ public class Player : MonoBehaviour
     public Collider coll;
     public Rigidbody rigidbody;
     public List<Vector3> respawnPoint=new List<Vector3>();
+    private int respawnFlag=0;
     private int faceR=1;
-    private bool jumped=false;
     bool grounded=false;
     // Start is called before the first frame update
 
@@ -39,12 +39,12 @@ public class Player : MonoBehaviour
         foreach(Collider collid in hitColliders){
             if(collid.transform.position==rigidbody.position){continue;}
             if(collid.transform.position.y < rigidbody.position.y){grounded=true;}
+            if(collid.name.Contains("spike")){Respawn(respawnFlag);}
         }
     }
     private void OnCollisionEnter(Collision other) {
-        if(other.gameObject.name=="Death"){Respawn(0);}
-        
-        //Debug.Log("grounded : " + grounded);
+        if(other.gameObject.name=="Death"){Respawn(respawnFlag);}
+        Debug.Log(other);
     }
     // Update is called once per frame
     void Update()
@@ -67,14 +67,12 @@ public class Player : MonoBehaviour
         else if(Input.GetAxis("Vertical")>0 && grounded){
             Debug.Log("Jump");
             jump=jumpSpeed;
-            jumped=true;
             grounded=false;
         }
         if (Input.GetAxis("Vertical")<0){
             sneaked=2;
             return;
         }
-        Debug.Log(grounded);
         
         if(Input.GetKeyDown("space") && grounded && rigidbody.velocity.y<1){ //jump
             //horizontal=speed *faceR * 2000f * Time.deltaTime;
@@ -89,19 +87,20 @@ public class Player : MonoBehaviour
         rigidbody.position=respawnPoint[currentLevel];
     }
     public float Dash(int direction){
-        Collider[] hitColliders = Physics.OverlapSphere(rigidbody.position, 3.6f);
+        Collider[] hitColliders = Physics.OverlapSphere(rigidbody.position, 10f);
         foreach(Collider collid in hitColliders){
-            if(collid.transform.position!=rigidbody.transform.position){
+            if(collid.transform.position!=rigidbody.transform.position && collid.name!="sol"){
                 if(direction==-1 && collid.transform.position.x<rigidbody.transform.position.x){
                     Debug.Log(" pas Dash yeah!");
-                    return 0.0f;
+                    return 9 *direction * 5000f * Time.deltaTime/10 * (-collid.transform.position.x + rigidbody.position.x);
                 }
                 else if(direction==1 && collid.transform.position.x>rigidbody.transform.position.x){
                     Debug.Log("pas Dash yeah!");
-                    return 0.0f;
+                    Debug.Log(collid.name);
+                    return 9 *direction * 5000f * Time.deltaTime/10 * (collid.transform.position.x - rigidbody.position.x);
                 }
             }
         }
-        return speed *direction * 2000f * Time.deltaTime;
+        return 9 *direction * 5000f * Time.deltaTime;
     }
 }
