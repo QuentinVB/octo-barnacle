@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 15
-  verticalOffset: 5
+  verticalOffset: 1
   player: {fileID: 8209691140525333888}
   bounds:
     serializedVersion: 2
