@@ -8,10 +8,14 @@ public class Player : MonoBehaviour
     public float speed=9f;
     public float speedmax=19f;
     public float jumpSpeed=1.8f;
+
+
     private int sneaked=1;
     public GameObject player;
     public Collider coll;
     public Rigidbody rigidbody;
+    public Animator animator;
+
     private float coolDownDash=1f;
     private float dashUp;
     public List<Vector3> respawnPoint=new List<Vector3>();
@@ -24,6 +28,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float deathLevel = -15.0f;
 
+
     void Start()
     {
         player.name="bob"; // temp name
@@ -32,6 +37,7 @@ public class Player : MonoBehaviour
         rigidbody =GetComponent<Rigidbody>();
         rigidbody.freezeRotation=true;       
         dashUp=Time.time;
+        animator.Play("BobRigging|Bob-Idle1");
     }
 
     private void FixedUpdate() {
