@@ -45,6 +45,11 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter(Collision other) {
         if(other.gameObject.name=="Death"){Respawn(respawnFlag);}
         Debug.Log(other);
+        
+        if (other.gameObject.tag == "MovingPlatform")
+        {
+            transform.SetParent(other.transform, true);
+        }
     }
 
     private void OnCollisionExit(Collision collision)
