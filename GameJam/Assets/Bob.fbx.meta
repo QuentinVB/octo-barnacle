@@ -24,6 +24,15 @@ ModelImporter:
   - first:
       74: -400163463578845637
     second: BobRigging|EmptyAction
+  - first:
+      74: -6325893060221810659
+    second: BobRigging|Bob-Crouch
+  - first:
+      74: -8522548050628805754
+    second: BobRigging|Bob-Sneak
+  - first:
+      74: 4720162279165275634
+    second: BobRigging|Bob-Sneak.001
   externalObjects: {}
   materials:
     materialImportMode: 2

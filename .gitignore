@@ -69,4 +69,4 @@ GameJam/.vsconfig
 GameJam/UserSettings
 GameJam/[Oo]bj
 
-*.blend[0-9]
+*.blend[0-9]*
