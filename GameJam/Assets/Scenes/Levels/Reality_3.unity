@@ -1980,11 +1980,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9053031516377485500, guid: 12d4c5b8b3a0046479c617f32d37af00, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.59
+      value: 46.43
       objectReference: {fileID: 0}
     - target: {fileID: 9053031516377485500, guid: 12d4c5b8b3a0046479c617f32d37af00, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 16.4
+      value: 17.58
       objectReference: {fileID: 0}
     - target: {fileID: 9053031516377485500, guid: 12d4c5b8b3a0046479c617f32d37af00, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2046,15 +2046,15 @@ MonoBehaviour:
   - speedFactor: 1
     position: {x: 0, y: 0}
   - speedFactor: 1
-    position: {x: 3, y: 6.98}
+    position: {x: -10.98, y: -4.24}
   - speedFactor: 1
-    position: {x: 13.58, y: -13.6}
+    position: {x: -14.78, y: -10.89}
   - speedFactor: 1
-    position: {x: -1.9, y: -13.6}
+    position: {x: -6.4, y: -10.9}
   - speedFactor: 1
-    position: {x: 1.93, y: -3.9}
+    position: {x: -14.53, y: 5.4}
   - speedFactor: 1
-    position: {x: 12.8, y: 1.5}
+    position: {x: -16.1, y: -1.72}
   speed: 0.7
   targetidx: 0
 --- !u!1001 &1007173779
@@ -4120,11 +4120,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8992189536489779950, guid: 98a6e5d79d7d83a44a5652798a38fa34, type: 3}
       propertyPath: m_LocalPosition.x
+<<<<<<< Updated upstream
       value: 81.9
       objectReference: {fileID: 0}
     - target: {fileID: 8992189536489779950, guid: 98a6e5d79d7d83a44a5652798a38fa34, type: 3}
       propertyPath: m_LocalPosition.y
       value: -6.6
+=======
+      value: 82.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8992189536489779950, guid: 98a6e5d79d7d83a44a5652798a38fa34, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.16
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 8992189536489779950, guid: 98a6e5d79d7d83a44a5652798a38fa34, type: 3}
       propertyPath: m_LocalRotation.w
