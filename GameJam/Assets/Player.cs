@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
 
     [SerializeField]
+    private float gravity = -9.81f;
+
+    [SerializeField]
     private float deathLevel = -15.0f;
 
     void Start()
@@ -34,7 +37,7 @@ public class Player : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        rigidbody.AddForce(new Vector3(0,-9.81f,0) * rigidbody.mass);
+        rigidbody.AddForce(new Vector3(0, gravity,0) * rigidbody.mass);
         Collider[] hitColliders = Physics.OverlapSphere(rigidbody.position, 1.25f);
         grounded=false;
         foreach(Collider collid in hitColliders){
@@ -52,6 +55,15 @@ public class Player : MonoBehaviour
             transform.SetParent(other.transform, true);
         }
     }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "MovingPlatform")
+        {
+            transform.SetParent(null);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
