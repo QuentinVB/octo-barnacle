@@ -4232,7 +4232,6 @@ Transform:
   - {fileID: 115145355}
   - {fileID: 1425780047}
   - {fileID: 188835407}
-  - {fileID: 1501894655}
   - {fileID: 450540421}
   - {fileID: 601851736}
   - {fileID: 2054495357}
@@ -4240,6 +4239,7 @@ Transform:
   - {fileID: 542248500}
   - {fileID: 910527855}
   - {fileID: 428598273}
+  - {fileID: 1501894655}
   - {fileID: 481987925}
   - {fileID: 1675400354}
   - {fileID: 929145061}
@@ -4454,7 +4454,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8992189536489779946, guid: 98a6e5d79d7d83a44a5652798a38fa34, type: 3}
       propertyPath: jumpSpeed
-      value: 90
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8992189536489779946, guid: 98a6e5d79d7d83a44a5652798a38fa34, type: 3}
       propertyPath: respawnPoint.Array.data[0].x

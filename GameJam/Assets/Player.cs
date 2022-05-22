@@ -42,9 +42,21 @@ public class Player : MonoBehaviour
         }
     }
     private void OnCollisionEnter(Collision other) {
-        if(other.gameObject.name=="Death"){Respawn(0);}
-        
+        if(other.gameObject.name=="Death"){
+            Respawn(0);
+        }
+
+        if (other.gameObject.tag == "MovingPlatform")
+            transform.SetParent(other.transform, true);
         //Debug.Log("grounded : " + grounded);
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "MovingPlateform")
+        {
+            transform.SetParent(null);
+        }
     }
     // Update is called once per frame
     void Update()
