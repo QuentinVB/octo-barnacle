@@ -3803,6 +3803,10 @@ PrefabInstance:
       propertyPath: bounds.height
       value: 55.9
       objectReference: {fileID: 0}
+    - target: {fileID: 8992189537876162704, guid: 98a6e5d79d7d83a44a5652798a38fa34, type: 3}
+      propertyPath: verticalOffset
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8992189537876162707, guid: 98a6e5d79d7d83a44a5652798a38fa34, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.6
