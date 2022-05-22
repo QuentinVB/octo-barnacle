@@ -154,6 +154,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bob
       objectReference: {fileID: 0}
+    - target: {fileID: 3425792314215547640, guid: c8fe4ca2560368744941b7c242290192, type: 3}
+      propertyPath: jumpSpeed
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3425792314215547640, guid: c8fe4ca2560368744941b7c242290192, type: 3}
+      propertyPath: respawnPoint.Array.data[0].x
+      value: 82.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 3425792314215547640, guid: c8fe4ca2560368744941b7c242290192, type: 3}
+      propertyPath: respawnPoint.Array.data[0].y
+      value: -6.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 3425792314215547642, guid: c8fe4ca2560368744941b7c242290192, type: 3}
+      propertyPath: m_Size.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3425792314215547644, guid: c8fe4ca2560368744941b7c242290192, type: 3}
       propertyPath: m_RootOrder
       value: 0
