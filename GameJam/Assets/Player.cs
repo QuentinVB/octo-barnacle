@@ -48,7 +48,21 @@ public class Player : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other) {
         if(other.gameObject.tag=="Death"){Respawn(respawnFlag);}
+
+        if (other.gameObject.tag == "MovingPlatform")
+        {
+            transform.SetParent(other.transform, true);
+        }
     }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "MovingPlatform")
+        {
+            transform.SetParent(null);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -93,7 +107,8 @@ public class Player : MonoBehaviour
 
     public void Respawn(int currentLevel){
         //Debug.Log(currentLevel);
-        rigidbody.position=respawnPoint[currentLevel];
+        transform.SetParent(null);
+        transform.position=respawnPoint[currentLevel];
     }
     public float Dash(int direction){
         return direction * 500;
