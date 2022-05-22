@@ -18,7 +18,9 @@ public class MovingPlatform : MonoBehaviour
     private Vector3 startPoint;
     private Vector3 targetPoint;
 
-    private float startTime;
+    protected float startTime;
+
+    protected bool active = true;
 
     // Start is called before the first frame update
     void Start()
@@ -31,8 +33,11 @@ public class MovingPlatform : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        float position = speed * waypoints[targetidx].speedFactor * (Time.time - startTime);
-        transform.position = Vector3.Lerp(startPoint, targetPoint, position);
+        if (active)
+        {
+            float position = speed * waypoints[targetidx].speedFactor * (Time.time - startTime);
+            transform.position = Vector3.Lerp(startPoint, targetPoint, position);
+        }
     }
 
     private void Update()
