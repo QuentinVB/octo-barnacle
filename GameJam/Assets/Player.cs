@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public Collider coll;
     public Rigidbody rigidbody;
     public List<Vector3> respawnPoint=new List<Vector3>();
-    private int respawnFlag=0;
+    public int respawnFlag=0;
     private int faceR=1;
     bool grounded=false;
     private bool dashed=false;
