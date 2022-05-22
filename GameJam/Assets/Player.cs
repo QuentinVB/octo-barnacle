@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private int respawnFlag=0;
     private int faceR=1;
     bool grounded=false;
+    private bool dashed=false;
     // Start is called before the first frame update
 
     [SerializeField]
@@ -46,14 +47,6 @@ public class Player : MonoBehaviour
         if(other.gameObject.name=="Death"){Respawn(respawnFlag);}
         Debug.Log(other);
     }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.tag == "MovingPlatform")
-        {
-            transform.SetParent(null);
-        }
-    }
     // Update is called once per frame
     void Update()
     {
@@ -84,7 +77,7 @@ public class Player : MonoBehaviour
         
         if(Input.GetKeyDown("space") && grounded && rigidbody.velocity.y<1){ //jump
             //horizontal=speed *faceR * 2000f * Time.deltaTime;
-            jump=jumpSpeed;
+            jump=jumpSpeed*Time.deltaTime;
         }
         Vector3 vec=new Vector3(horizontal*Time.deltaTime/sneaked,jump,0.0f);
         transform.Translate(vec);
@@ -95,20 +88,23 @@ public class Player : MonoBehaviour
         rigidbody.position=respawnPoint[currentLevel];
     }
     public float Dash(int direction){
+        if(!grounded && dashed){return 0.0f;}
         Collider[] hitColliders = Physics.OverlapSphere(rigidbody.position, 10f);
         foreach(Collider collid in hitColliders){
             if(collid.transform.position!=rigidbody.transform.position && collid.name!="sol"){
                 if(direction==-1 && collid.transform.position.x<rigidbody.transform.position.x){
-                    Debug.Log(" pas Dash yeah!");
+                    Debug.Log(collid.name);
+                    dashed=true;
                     return 9 *direction * 5000f * Time.deltaTime/10 * (-collid.transform.position.x + rigidbody.position.x);
                 }
                 else if(direction==1 && collid.transform.position.x>rigidbody.transform.position.x){
-                    Debug.Log("pas Dash yeah!");
                     Debug.Log(collid.name);
+                    dashed=true;
                     return 9 *direction * 5000f * Time.deltaTime/10 * (collid.transform.position.x - rigidbody.position.x);
                 }
             }
         }
+        dashed=true;
         return 9 *direction * 5000f * Time.deltaTime;
     }
 }
