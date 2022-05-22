@@ -33,6 +33,9 @@ ModelImporter:
   - first:
       74: 4720162279165275634
     second: BobRigging|Bob-Sneak.001
+  - first:
+      74: 2308890148816520397
+    second: BobRigging|Bob-Dash
   externalObjects: {}
   materials:
     materialImportMode: 2

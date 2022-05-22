@@ -88,8 +88,18 @@ public class Player : MonoBehaviour
         if(Input.GetKey("left shift")){
             Debug.Log("dash");
             if(Time.time<dashUp){Debug.Log("can't dash");}
-            else if(Input.GetKey("d") ){horizontal=Dash(1);dashUp=coolDownDash+Time.time;}
-            else if(Input.GetKey("q")){horizontal=Dash(-1);dashUp=coolDownDash+Time.time;}
+            else if(Input.GetKey("d") )
+            {
+                horizontal=Dash(1);
+                dashUp=coolDownDash+Time.time; 
+                animator.Play("BobRigging|Bob-Dash");
+            }
+            else if(Input.GetKey("q"))
+            {
+                horizontal=Dash(-1);
+                dashUp=coolDownDash+Time.time; 
+                animator.Play("BobRigging|Bob-Dash");
+            }
             rigidbody.AddForce(horizontal,0f,0f);
             horizontal=0f;
         }
@@ -110,7 +120,7 @@ public class Player : MonoBehaviour
             {
                 animator.SetBool("isRunning", false);
             }
-            if(!grounded){horizontal/=6;}
+            if(!grounded){horizontal/=6; animator.SetBool("isLanding", false); }
         }
 
         
@@ -127,9 +137,11 @@ public class Player : MonoBehaviour
             dashed=false;
         }
         rigidbody.AddForce(new Vector3(horizontal,jump,0f));
+
         if(grounded)
         {
             animator.SetBool("isJumping", false);
+            animator.SetBool("isLanding", true);
         }
     }
 
