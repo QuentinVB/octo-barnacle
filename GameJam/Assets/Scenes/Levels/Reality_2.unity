@@ -4294,7 +4294,7 @@ MonoBehaviour:
     position: {x: 0, y: 0}
   - speedFactor: 1
     position: {x: 0, y: 5}
-  speed: 0.5
+  speed: 0.7
   targetidx: 0
 --- !u!4 &1645970902 stripped
 Transform:
@@ -4896,11 +4896,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6718494200098723265, guid: 12ba6d22c5c30b44499ef0f6f9309acd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 54.66
+      value: 54.4
       objectReference: {fileID: 0}
     - target: {fileID: 6718494200098723265, guid: 12ba6d22c5c30b44499ef0f6f9309acd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6718494200098723265, guid: 12ba6d22c5c30b44499ef0f6f9309acd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4970,7 +4970,7 @@ MonoBehaviour:
     position: {x: 0, y: 0}
   - speedFactor: 1
     position: {x: 0, y: 5}
-  speed: 0.5
+  speed: 1
   targetidx: 0
 --- !u!4 &1796996370 stripped
 Transform:
@@ -5818,7 +5818,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8992189536489779950, guid: 98a6e5d79d7d83a44a5652798a38fa34, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 70.53
+      value: 69.1
       objectReference: {fileID: 0}
     - target: {fileID: 8992189536489779950, guid: 98a6e5d79d7d83a44a5652798a38fa34, type: 3}
       propertyPath: m_LocalPosition.y
