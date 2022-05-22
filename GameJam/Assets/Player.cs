@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public int respawnFlag=0;
     private int faceR=1;
     bool grounded=false;
+    private bool dashed=false;
     // Start is called before the first frame update
 
     [SerializeField]
