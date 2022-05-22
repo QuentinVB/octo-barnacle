@@ -9,11 +9,11 @@ public class DeathBox : MonoBehaviour
     private int playerRespawnPoint;
 
 
-    private void OnTriggerEnter(Collider other)
-    { 
-        if (other.gameObject.tag == "Player")
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<Player>().Respawn(playerRespawnPoint);
+            collision.gameObject.GetComponent<Player>().Respawn(playerRespawnPoint);
         }
     }
 }

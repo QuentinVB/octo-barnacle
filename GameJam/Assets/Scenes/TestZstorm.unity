@@ -497,6 +497,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 6_plat
       objectReference: {fileID: 0}
+    - target: {fileID: 3491462506800684895, guid: dc7865a37b48e8d4289d3a06ecf8c077, type: 3}
+      propertyPath: m_TagString
+      value: MovingPlatform
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc7865a37b48e8d4289d3a06ecf8c077, type: 3}
 --- !u!1 &297553229 stripped
@@ -518,9 +522,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - speedFactor: 1
-    position: {x: 15, y: 0}
-  - speedFactor: 1
     position: {x: 0, y: 0}
+  - speedFactor: 1
+    position: {x: 15, y: 0}
   speed: 0.5
   targetidx: 0
 --- !u!1 &452124791
