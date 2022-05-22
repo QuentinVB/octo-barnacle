@@ -75,12 +75,13 @@ public class Player : MonoBehaviour
             return;
         }
         
-        if(Input.GetKeyDown("space") && grounded && rigidbody.velocity.y<1){ //jump
+        if(Input.GetKeyDown("space") && grounded && rigidbody.velocity.y<.1){ //jump
             //horizontal=speed *faceR * 2000f * Time.deltaTime;
             jump=jumpSpeed*Time.deltaTime;
         }
-        Vector3 vec=new Vector3(horizontal*Time.deltaTime/sneaked,jump,0.0f);
-        transform.Translate(vec);
+        Vector3 vec=new Vector3(horizontal*Time.deltaTime/sneaked,0f,0.0f);
+        //transform.Translate(vec);
+        rigidbody.AddForce(new Vector3(horizontal,jump,0f));
 
     }
 
