@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
         
         if(Input.GetKeyDown("space") && grounded && rigidbody.velocity.y<1){ //jump
             //horizontal=speed *faceR * 2000f * Time.deltaTime;
-            jump=jumpSpeed;
+            jump=jumpSpeed*Time.deltaTime;
         }
         Vector3 vec=new Vector3(horizontal*Time.deltaTime/sneaked,jump,0.0f);
         transform.Translate(vec);
@@ -87,6 +87,7 @@ public class Player : MonoBehaviour
         rigidbody.position=respawnPoint[currentLevel];
     }
     public float Dash(int direction){
+        if(!grounded){return 0.0f;}
         Collider[] hitColliders = Physics.OverlapSphere(rigidbody.position, 10f);
         foreach(Collider collid in hitColliders){
             if(collid.transform.position!=rigidbody.transform.position && collid.name!="sol"){
