@@ -37,7 +37,6 @@ public class Player : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapSphere(rigidbody.position, 1.25f);
         grounded=false;
         foreach(Collider collid in hitColliders){
-            Debug.Log("enter");
             if(collid.transform.position==rigidbody.position){continue;}
             if(collid.transform.position.y < rigidbody.position.y){grounded=true;}
         }
