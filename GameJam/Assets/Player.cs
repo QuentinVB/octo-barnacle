@@ -6,7 +6,7 @@ using UnityEngine.Sprites;
 public class Player : MonoBehaviour
 {
     public float speed=9f;
-    public float jumpSpeed=200f;
+    public float jumpSpeed=20f;
     private int sneaked=1;
     public GameObject player;
     public Collider coll;
@@ -34,19 +34,17 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate() {
         rigidbody.AddForce(new Vector3(0,-9.81f,0) * rigidbody.mass);
+        Collider[] hitColliders = Physics.OverlapSphere(rigidbody.position, 1.25f);
+        grounded=false;
+        foreach(Collider collid in hitColliders){
+            Debug.Log("enter");
+            if(collid.transform.position==rigidbody.position){continue;}
+            if(collid.transform.position.y < rigidbody.position.y){grounded=true;}
+        }
     }
     private void OnCollisionEnter(Collision other) {
         if(other.gameObject.name=="Death"){Respawn(0);}
-        Collider[] hitColliders = Physics.OverlapSphere(rigidbody.position, 1f);
-        grounded=false;
-        foreach(Collider collid in hitColliders){
-            if(collid.transform.position.y < rigidbody.position.y){grounded=true;}
-            // else if(collid.transform.position.x - rigidbody.position.x<0 && faceR==-1 ){grounded=true;}
-            // else if(collid.transform.position.x - rigidbody.position.x<0.5 && faceR==1 ){
-            //     Debug.Log(collid.transform.position.x - rigidbody.position.x);
-            //     grounded=true;}
-        }
-        jumped=false;
+        
         //Debug.Log("grounded : " + grounded);
     }
     // Update is called once per frame
@@ -77,11 +75,13 @@ public class Player : MonoBehaviour
             sneaked=2;
             return;
         }
-        if(Input.GetKeyDown("space")){ //jump
+        Debug.Log(grounded);
+        
+        if(Input.GetKeyDown("space") && grounded && rigidbody.velocity.y<1){ //jump
             //horizontal=speed *faceR * 2000f * Time.deltaTime;
             jump=jumpSpeed;
         }
-        Vector3 vec=new Vector3(-1f*horizontal*Time.deltaTime/sneaked,jump*Time.deltaTime,0.0f);
+        Vector3 vec=new Vector3(horizontal*Time.deltaTime/sneaked,jump,0.0f);
         transform.Translate(vec);
 
     }
