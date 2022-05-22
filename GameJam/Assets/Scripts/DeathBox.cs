@@ -6,12 +6,12 @@ using UnityEngine;
 public class DeathBox : MonoBehaviour
 {
     [SerializeField]
-    private int playerRespawnPoint;
+    public int playerRespawnPoint;
 
 
     private void OnTriggerEnter(Collider other)
     { 
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.name == "bob")
         {
             other.gameObject.GetComponent<Player>().Respawn(playerRespawnPoint);
         }
